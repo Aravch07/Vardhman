@@ -1,0 +1,724 @@
+[
+  {
+    "id": "4",
+    "name": "PERMA SPUN® ECO100",
+    "fiber": "STAPLE SPUN",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/4",
+    "applications": [
+      "Apparel"
+    ],
+    "image": "/assets/products/4.jpg"
+  },
+  {
+    "id": "5",
+    "name": "D CORE",
+    "fiber": "CORE SPUN - COTTON WRAP",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/5",
+    "applications": [
+      "Apparel",
+      "Overdyed denim"
+    ],
+    "image": "/assets/products/5.png"
+  },
+  {
+    "id": "7",
+    "name": "D CORE INDIGO",
+    "fiber": "CORE SPUN COTTON WRAP WITH INDIGO EFFECT",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/7",
+    "applications": [
+      "Apparel",
+      "Overdyed denim"
+    ],
+    "image": "/assets/products/7.png"
+  },
+  {
+    "id": "8",
+    "name": "ANESOFT",
+    "fiber": "MICRO DENIER TEXTURED POLYESTER",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/8",
+    "applications": [
+      "Apparel",
+      "Soft seam"
+    ],
+    "image": "/assets/products/8.png"
+  },
+  {
+    "id": "9",
+    "name": "ANEFLEX",
+    "fiber": "HIGH ELONGATION, PBT SEWING THREAD",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/9",
+    "applications": [
+      "Apparel",
+      "High elongation"
+    ],
+    "image": "/assets/products/9.png"
+  },
+  {
+    "id": "10",
+    "name": "WILD CAT ECO100",
+    "fiber": "100 % RECYCLED TEXTURED POLYESTER",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/10",
+    "applications": [
+      "Apparel",
+      "Soft seam"
+    ],
+    "image": "/assets/products/10.jpg"
+  },
+  {
+    "id": "11",
+    "name": "BEST STRETCH",
+    "fiber": "TEXTURED 100% NYLON THREAD",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/11",
+    "applications": [
+      "Apparel",
+      "Soft seam"
+    ],
+    "image": "/assets/products/11.png"
+  },
+  {
+    "id": "12",
+    "name": "PERMA CORE ECO100",
+    "fiber": "CORE SPUN, POLYESTER WRAP",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/12",
+    "applications": [
+      "Apparel",
+      "Suiting & shirting",
+      "Overdyed denim"
+    ],
+    "image": "/assets/products/12.jpg"
+  },
+  {
+    "id": "13",
+    "name": "SUPER MATTE™ ECO100",
+    "fiber": "100% RECYCLED SPUN POLYESTER, MATT FINISH EMBROIDERY THREAD",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/13",
+    "applications": [
+      "Apparel",
+      "Embroidery"
+    ],
+    "image": "/assets/products/13.jpg"
+  },
+  {
+    "id": "16",
+    "name": "SUPER BRITE POLYESTER® ECO100",
+    "fiber": "100% RECYCLED, HIGH TENACITY, TRILOBAL POLYESTER EMBROIDERY THREAD",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/16",
+    "applications": [
+      "Apparel",
+      "Embroidery"
+    ],
+    "image": "/assets/products/16.jpg"
+  },
+  {
+    "id": "18",
+    "name": "D CORE GLACED",
+    "fiber": "GLACED COTTON WRAPPED, POLYESTER CORE",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/18",
+    "applications": [
+      "Apparel"
+    ],
+    "image": "/assets/products/18.png"
+  },
+  {
+    "id": "20",
+    "name": "J METALLIC™",
+    "fiber": "MONO-CORE (NYLON CORE WITH METALLIC COVERED WRAPPING)",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/20",
+    "applications": [
+      "Apparel",
+      "Embroidery"
+    ],
+    "image": "/assets/products/20.png"
+  },
+  {
+    "id": "28",
+    "name": "WILDCAT",
+    "fiber": "TEXTURED POLYESTER",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/28",
+    "applications": [
+      "Apparel",
+      "Soft seam"
+    ],
+    "image": "/assets/products/28.png"
+  },
+  {
+    "id": "29",
+    "name": "CHROMA",
+    "fiber": "LONG STAPLE SPUN COTTON-RFD",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/29",
+    "applications": [
+      "Apparel",
+      "Denim"
+    ],
+    "image": "/assets/products/29.jpg"
+  },
+  {
+    "id": "30",
+    "name": "D-CORE ECO",
+    "fiber": "RECYCLED POLYESTER CORE SPUN - COTTON WRAP",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/30",
+    "applications": [
+      "Apparel",
+      "Overdyed denim"
+    ],
+    "image": "/assets/products/30.png"
+  },
+  {
+    "id": "32",
+    "name": "CHROMA SPC",
+    "fiber": "SPECIALLY PROCESSED LONG STAPLE SPUN COTTON- RFD",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/32",
+    "applications": [
+      "Apparel",
+      "Overdyed denim"
+    ],
+    "image": "/assets/products/32.jpg"
+  },
+  {
+    "id": "37",
+    "name": "FUSER",
+    "fiber": "POLY POLY CORESPUN WITH FUSIBLE COATING",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/37",
+    "applications": [
+      "Apparel"
+    ],
+    "image": "/assets/products/37.png"
+  },
+  {
+    "id": "38",
+    "name": "SUPER BRITE POLYESTER®",
+    "fiber": "TRILOBAL TWISTED MULTIFILAMENT",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/38",
+    "applications": [
+      "Apparel",
+      "Embroidery"
+    ],
+    "image": "/assets/products/38.png"
+  },
+  {
+    "id": "39",
+    "name": "PERMA CORE",
+    "fiber": "CORE SPUN- POLYESTER WRAP",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/39",
+    "applications": [
+      "Apparel",
+      "Suiting & shirting"
+    ],
+    "image": "/assets/products/39.png"
+  },
+  {
+    "id": "40",
+    "name": "NATURA",
+    "fiber": "ORGANIC COTTON",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/40",
+    "applications": [
+      "Apparel",
+      "Overdyed denim"
+    ],
+    "image": "/assets/products/40.png"
+  },
+  {
+    "id": "41",
+    "name": "D CORE CORE DYED",
+    "fiber": "DYED RECYCLED POLYESTER CORE SPUN - UNDYED COTTON WRAP",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/41",
+    "applications": [
+      "Apparel",
+      "Overdyed denim"
+    ],
+    "image": "/assets/products/41.jpg"
+  },
+  {
+    "id": "42",
+    "name": "SUPRA SEAM",
+    "fiber": "SUPRA SEAM IS A HIGH QUALITY, EXTRA PREMIUM POLY-POLY CORESPUN THREAD",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/42",
+    "applications": [
+      "Apparel"
+    ],
+    "image": "/assets/products/42.jpg"
+  },
+  {
+    "id": "43",
+    "name": "PERMA CORE MATT",
+    "fiber": "CORE SPUN- POLYESTER WRAP",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/43",
+    "applications": [
+      "Apparel",
+      "Embroidery"
+    ],
+    "image": "/assets/products/43.jpg"
+  },
+  {
+    "id": "44",
+    "name": "PERMA CORE MATT ECO100",
+    "fiber": "RECYCLED CORE SPUN- POLYESTER WRAP",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/44",
+    "applications": [
+      "Apparel",
+      "Embroidery"
+    ],
+    "image": "/assets/products/44.jpg"
+  },
+  {
+    "id": "72",
+    "name": "SUPER MATT",
+    "fiber": "SPUN POLYESTER, MATT FINISH EMBROIDERY THREAD",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/72",
+    "applications": [
+      "Apparel",
+      "Embroidery"
+    ],
+    "image": "/assets/products/72.jpg"
+  },
+  {
+    "id": "74",
+    "name": "D CORE CORE DYED ECO",
+    "fiber": "DYED RECYCLED POLYESTER CORESPUN - UNDYED COTTON WRAP",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/74",
+    "applications": [
+      "Apparel"
+    ],
+    "image": "/assets/products/74.jpg"
+  },
+  {
+    "id": "76",
+    "name": "PERMA SPUN",
+    "fiber": "STAPLE SPUN POLYESTER",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/76",
+    "applications": [
+      "Apparel"
+    ],
+    "image": "/assets/products/76.jpg"
+  },
+  {
+    "id": "79",
+    "name": "EUREKA SOL",
+    "fiber": "STAPLE SPUN POLY VINYL ALCOHOL (PVA) - WATER SOLUBLE THREAD",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/79",
+    "applications": [
+      "Apparel"
+    ],
+    "image": "/assets/products/79.jpg"
+  },
+  {
+    "id": "81",
+    "name": "ANESOFT® ECO100",
+    "fiber": "100 % RECYCLED MICRO DENIER TEXTURED POLYESTER",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/81",
+    "applications": [
+      "Apparel"
+    ],
+    "image": "/assets/products/81.jpg"
+  },
+  {
+    "id": "82",
+    "name": "BEST STRETCH® ECO100",
+    "fiber": "100% RECYCLED TEXTURED NYLON",
+    "category": "Apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/82",
+    "applications": [
+      "Apparel"
+    ],
+    "image": "/assets/products/82.jpg"
+  },
+  {
+    "id": "21",
+    "name": "ANEFIL POLY ECO100",
+    "fiber": "100% RECYCLED, TWISTED MULTIFILAMENT, CF POLYESTER SEWING THREAD",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/21",
+    "applications": [
+      "Non-apparel"
+    ],
+    "image": "/assets/products/21.jpg"
+  },
+  {
+    "id": "25",
+    "name": "ANEFIL NYLON® DRY",
+    "fiber": "NON-WICKING, TWISTED MULTIFILAMENT, CF NYLON SEWING THREAD",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/25",
+    "applications": [
+      "Non-apparel",
+      "Footwear"
+    ],
+    "image": "/assets/products/25.jpg"
+  },
+  {
+    "id": "26",
+    "name": "ANEFIL POLY",
+    "fiber": "TWISTED MULTIFILAMENT, CF POLYESTER SEWING THREAD",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/26",
+    "applications": [
+      "Non-apparel",
+      "Footwear"
+    ],
+    "image": "/assets/products/26.jpg"
+  },
+  {
+    "id": "27",
+    "name": "LINKER",
+    "fiber": "TWISTED MULTIFILAMENT, NYLON 6 SEWING THREAD",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/27",
+    "applications": [
+      "Non-apparel"
+    ],
+    "image": "/assets/products/27.png"
+  },
+  {
+    "id": "31",
+    "name": "ANEFIL NYLON ECO100",
+    "fiber": "100% RECYCLED, TWISTED MULTIFILAMENT, CF NYLON SEWING THREAD",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/31",
+    "applications": [
+      "Non-apparel",
+      "Footwear"
+    ],
+    "image": "/assets/products/31.jpg"
+  },
+  {
+    "id": "33",
+    "name": "SUNSTOP",
+    "fiber": "TWISTED MULTIFILAMENT",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/33",
+    "applications": [
+      "Non-apparel",
+      "Automotive"
+    ],
+    "image": "/assets/products/33.jpg"
+  },
+  {
+    "id": "34",
+    "name": "ANEBRAID",
+    "fiber": "BRAIDED CF POLYESTER",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/34",
+    "applications": [
+      "Non-apparel",
+      "Footwear"
+    ],
+    "image": "/assets/products/34.png"
+  },
+  {
+    "id": "35",
+    "name": "ANEGUARD",
+    "fiber": "STAPLE SPUN PARA-ARAMID",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/35",
+    "applications": [
+      "Non-apparel"
+    ],
+    "image": "/assets/products/35.jpg"
+  },
+  {
+    "id": "36",
+    "name": "ANEFIL NYLON",
+    "fiber": "TWISTED MULTIFILAMENT, CF NYLON SEWING THREAD",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/36",
+    "applications": [
+      "Non-apparel",
+      "Footwear",
+      "Automotive"
+    ],
+    "image": "/assets/products/36.png"
+  },
+  {
+    "id": "73",
+    "name": "ANESAFE",
+    "fiber": "STAPLE SPUN-100% META-ARAMID",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/73",
+    "applications": [
+      "Non-apparel"
+    ],
+    "image": "/assets/products/73.jpg"
+  },
+  {
+    "id": "75",
+    "name": "DURO GLACE",
+    "fiber": "GLACED-COTTON WRAPPED, CF POLYESTER CORE TWISTED THREAD",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/75",
+    "applications": [
+      "Non-apparel"
+    ],
+    "image": "/assets/products/75.png"
+  },
+  {
+    "id": "77",
+    "name": "ANEBRAID ECO100",
+    "fiber": "100% RECYCLED BRAIDED CF POLYESTER",
+    "category": "Non-apparel",
+    "url": "https://www.vardhmanthreads.com/product_detail/77",
+    "applications": [
+      "Non-apparel"
+    ],
+    "image": "/assets/products/77.png"
+  },
+  {
+    "id": "45",
+    "name": "ORGANICA",
+    "fiber": "PREMIUM COTTON THREADING THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/45",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/45.png"
+  },
+  {
+    "id": "47",
+    "name": "VANITY",
+    "fiber": "COTTON THREADING THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/47",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/47.png"
+  },
+  {
+    "id": "48",
+    "name": "TORA GOLD",
+    "fiber": "STAPLE SPUN POLYESTER THREADS",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/48",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/48.png"
+  },
+  {
+    "id": "49",
+    "name": "TORA GOLD EDGE",
+    "fiber": "STAPLE SPUN POLYESTER THREADS",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/49",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/49.png"
+  },
+  {
+    "id": "50",
+    "name": "DURO",
+    "fiber": "PREMIUM POLY-POLY CORE SPUN THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/50",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/50.png"
+  },
+  {
+    "id": "51",
+    "name": "CHALLENGE",
+    "fiber": "STAPLE SPUN POLYESTER THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/51",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/51.png"
+  },
+  {
+    "id": "54",
+    "name": "KREATION",
+    "fiber": "PREMIUM COTTON EMBROIDERY THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/54",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/54.jpg"
+  },
+  {
+    "id": "55",
+    "name": "RANGOLI",
+    "fiber": "PREMIUM COTTON EMBROIDERY THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/55",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/55.png"
+  },
+  {
+    "id": "56",
+    "name": "VAPO",
+    "fiber": "POLYESTER HOSIERY THREADS",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/56",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/56.jpg"
+  },
+  {
+    "id": "57",
+    "name": "HAMMER POLY",
+    "fiber": "POLYESTER HOSIERY THREADS",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/57",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/57.png"
+  },
+  {
+    "id": "58",
+    "name": "HAMMER POLY PLUS",
+    "fiber": "STAPLE SPUN POLYESTER HOSIERY THREADS",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/58",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/58.png"
+  },
+  {
+    "id": "59",
+    "name": "HAMMER",
+    "fiber": "COTTON HOSIERY THREADS",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/59",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/59.png"
+  },
+  {
+    "id": "60",
+    "name": "AK56 PLATINUM PLUS",
+    "fiber": "HIGH PREMIUM MANJHA MAKING & SADDI 100% GLACED COTTON KITE FLYING THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/60",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/60.png"
+  },
+  {
+    "id": "61",
+    "name": "PLATINUM PANDA",
+    "fiber": "SUPER PREMIUM MANJHA MAKING & SADDI 100% GLACED COTTON KITE FLYING THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/61",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/61.png"
+  },
+  {
+    "id": "62",
+    "name": "TITANIUM PANDA",
+    "fiber": "100% COTTON KITE FLYING THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/62",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/62.png"
+  },
+  {
+    "id": "63",
+    "name": "PANDA GOLD",
+    "fiber": "MANJHA MAKING & SADDI 100% GLACED COTTON KITE FLYING THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/63",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/63.png"
+  },
+  {
+    "id": "64",
+    "name": "AK56 GOLD",
+    "fiber": "MANJHA MAKING & SADDI 100% GLACED COTTON KITE FLYING THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/64",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/64.png"
+  },
+  {
+    "id": "66",
+    "name": "AK56 MARVEL",
+    "fiber": "MANJHA MAKING & SADDI 100% GLACED COTTON KITE FLYING THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/66",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/66.png"
+  },
+  {
+    "id": "67",
+    "name": "KING PANDA",
+    "fiber": "100% GLACED COTTON KITE FLYING THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/67",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/67.jpg"
+  },
+  {
+    "id": "68",
+    "name": "SUPREME PANDA",
+    "fiber": "100% GLACED COTTON KITE FLYING THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/68",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/68.jpg"
+  },
+  {
+    "id": "70",
+    "name": "AGNI",
+    "fiber": "MANJHA MAKING & SADDI 100% GLACED COTTON KITE FLYING THREAD",
+    "category": "Consumer",
+    "url": "https://www.vardhmanthreads.com/product_detail/70",
+    "applications": [
+      "Consumer"
+    ],
+    "image": "/assets/products/70.png"
+  }
+]
