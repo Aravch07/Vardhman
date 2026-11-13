@@ -19,3 +19,9 @@ CREATE TABLE IF NOT EXISTS requests (
   history jsonb NOT NULL DEFAULT '[]', updated_at timestamptz NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS requests_dealer ON requests (dealer_id, created_at DESC);
+CREATE TABLE IF NOT EXISTS dealer_resales (
+  request_id text PRIMARY KEY REFERENCES requests(id) ON DELETE CASCADE,
+  revenue numeric(14,2) NOT NULL CHECK (revenue >= 0),
+  expenses numeric(14,2) NOT NULL CHECK (expenses >= 0),
+  updated_at timestamptz NOT NULL DEFAULT now()
+);

@@ -153,7 +153,10 @@ async function listRequests(sql, account) {
   if (account.role === 'staff') {
     return sql`SELECT r.*, a.company, a.name AS dealer_name FROM requests r JOIN accounts a ON a.id = r.dealer_id ORDER BY r.created_at DESC`;
   }
-  return sql`SELECT * FROM requests WHERE dealer_id = ${account.id} ORDER BY created_at DESC`;
+  return sql`SELECT r.*, CASE WHEN d.request_id IS NOT NULL THEN jsonb_build_object(
+    'revenue', d.revenue, 'expenses', d.expenses, 'updatedAt', d.updated_at) END AS resale
+    FROM requests r LEFT JOIN dealer_resales d ON d.request_id = r.id
+    WHERE r.dealer_id = ${account.id} ORDER BY r.created_at DESC`;
 }
 
 async function changeRequest(sql, account, body) {
@@ -184,6 +187,22 @@ async function changeRequest(sql, account, body) {
   return updated;
 }
 
+async function recordResale(sql, account, body) {
+  if (account.role !== 'dealer') reject('A dealer account is required.', 403);
+  const id = text(body.id, 30);
+  const [revenue, expenses] = [body.revenue, body.expenses].map(value =>
+    value === '' || value == null ? NaN : Number(value));
+  if ([revenue, expenses].some(amount => !Number.isFinite(amount) || amount < 0 || amount > 1e9)) {
+    reject('Enter valid resale and expense amounts.');
+  }
+  const [entry] = await sql`INSERT INTO dealer_resales (request_id, revenue, expenses)
+    SELECT id, ${revenue}, ${expenses} FROM requests WHERE id = ${id} AND dealer_id = ${account.id}
+      AND status = 'Delivered' AND quote IS NOT NULL AND quote <> 'null'::jsonb
+    ON CONFLICT (request_id) DO UPDATE SET revenue = EXCLUDED.revenue, expenses = EXCLUDED.expenses, updated_at = now()
+    RETURNING jsonb_build_object('revenue', revenue, 'expenses', expenses, 'updatedAt', updated_at) AS resale`;
+  if (!entry) reject('Delivered order was not found.', 404);
+  return entry.resale;
+}
 function send(res, status, data) {
   res.statusCode = status;
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -223,6 +242,7 @@ export default async function handler(req, res) {
       return send(res, 200, { request: await createRequest(sql, account, body) });
     }
     if (action === 'status') return send(res, 200, { request: await changeRequest(sql, account, body) });
+    if (action === 'resale') return send(res, 200, { resale: await recordResale(sql, account, body) });
     if (action === 'invite') {
       if (account.role !== 'staff') reject('A staff account is required.', 403);
       const email = text(body.email, 254).toLowerCase();

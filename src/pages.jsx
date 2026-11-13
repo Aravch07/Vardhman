@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowDownToLine, ArrowRight, ArrowUpRight, BookOpen, Calculator, ChevronDown, ClipboardList, Clock3, ExternalLink, Package, Plus, Search, SlidersHorizontal, Truck, Wallet } from 'lucide-react';
-import { money, stages } from '../shared/commerce.js';
+import { money, resaleProfit, stages } from '../shared/commerce.js';
 import { categories, company, featured, products, resources } from './data.js';
 import { Blank, Button, downloadCsv, PageHeader, ProductCard, RequestTable } from './ui.jsx';
 
@@ -57,6 +57,8 @@ export function Dashboard({ rows, account, demo, go, onNew, onOpen, onProduct })
     ['Orders in transit', rows.filter(row => row.status === 'Dispatched').length, Truck, 'violet', 'Dispatched to destination'],
     ['Confirmed order value', money(sales), Wallet, 'mint', 'Before freight and tax']
   ];
+  const resaleRows = ordered.filter(row=>row.resale && row.quote);
+  const realised = resaleRows.reduce((sum,row)=>sum+resaleProfit(row.quote,row.resale),0);
   const quick = [
     ['Browse product catalog','Search threads by range and application.',Package,'blue', () => go('catalog')],
     ['Estimate delivery','Check lead time and freight by PIN code.',Truck,'violet', () => go('delivery')],
@@ -86,6 +88,7 @@ export function Dashboard({ rows, account, demo, go, onNew, onOpen, onProduct })
         <div className="quick-actions">{quick.map(([title,desc,Icon,tone,act])=><button key={title} onClick={act}><span className={'metric-icon ' + tone}><Icon size={19}/></span><span><strong>{title}</strong><small>{desc}</small></span><ArrowUpRight size={17}/></button>)}</div>
       </section>
     </div>
+    {resaleRows.length>0 && <section className="panel resale-overview"><div><h2>Recorded resale profit</h2><p>Before tax · {resaleRows.length} delivered {resaleRows.length===1?'order':'orders'} with resale figures</p></div><strong>{money(realised,2)}</strong></section>}
     <section className="panel recent-panel"><div className="panel-head"><div><h2>Recent requests</h2><p>Latest quotes, orders and dispatch updates</p></div><Button variant="secondary" onClick={()=>go('requests')}>View all <ArrowRight size={15}/></Button></div>
       <RequestTable rows={rows.slice(0,4)} staff={account?.role==='staff'} onOpen={onOpen} onNew={account?.role !== 'staff' && onNew} compact/>
     </section>
@@ -125,8 +128,8 @@ export function Requests({ rows, staff, onOpen, onNew, loading, error, refresh }
   const [status,setStatus]=useState('All statuses');
   const visible = rows.filter(row=>(status==='All statuses'||status===row.status) &&
     [row.id,row.company,row.payload.city,...row.payload.items.flatMap(i=>[i.name,i.article,i.shade])].join(' ').toLowerCase().includes(query.trim().toLowerCase()));
-  const exportRows=()=>downloadCsv('vardhman-requests.csv',[['Request','Company','Status','Date','City','PIN','Articles','Quote total INR','Tracking'],
-    ...visible.map(r=>[r.id,r.company,r.status,r.created_at,r.payload.city,r.payload.pin,r.payload.items.map(i=>i.name+' / '+i.article+' / '+i.shade+' / '+i.quantity+' '+i.unit).join('; '),r.quote?.total,r.tracking])]);
+  const exportRows=()=>downloadCsv('vardhman-requests.csv',[['Request','Company','Status','Date','City','PIN','Articles','Quote total INR','Tracking',...(!staff?['Recorded resale profit INR']:[])],
+    ...visible.map(r=>[r.id,r.company,r.status,r.created_at,r.payload.city,r.payload.pin,r.payload.items.map(i=>i.name+' / '+i.article+' / '+i.shade+' / '+i.quantity+' '+i.unit).join('; '),r.quote?.total,r.tracking,...(!staff?[r.resale&&r.quote?resaleProfit(r.quote,r.resale):null]:[])])]);
   return <>
     <PageHeader label={staff?'SALES OPERATIONS':'DEALER WORKSPACE'} title={staff?'Dealer requests':'Requests & orders'} description={staff?'Review incoming requests, send quotes and update dispatch.':'Track every article request from submission to delivery.'}>
       <div className="button-group"><Button icon={ArrowDownToLine} variant="secondary" onClick={exportRows} disabled={!visible.length}>Export CSV</Button><Button icon={Plus} onClick={onNew}>{staff?'Invite dealer':'New request'}</Button></div>

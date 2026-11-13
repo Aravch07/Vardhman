@@ -344,3 +344,8 @@ body:has(.dialog[open]) { overflow: hidden; }
 }
 
 .demo-badge { margin-left: 3px; padding: 3px 6px; border-radius: 5px; background: #fff0d3; color: #795015; font-size: 9px; letter-spacing: .025em; text-transform: none; }
+
+.resale-overview { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 15px; padding: 14px 17px; }
+.resale-overview h2 { font-size: 16px; }
+.resale-overview p { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.resale-overview strong { font-size: 21px; color: #0b7965; }

@@ -8,7 +8,7 @@ A B2B sales pilot for requesting Vardhman A&E thread articles and progressing th
 - Create multi-line requests with a product, article or size, shade, quantity, packaging unit and delivery destination.
 - Estimate lead time and freight using illustrative rules. Company staff supply the actual quote and lead time.
 - Invite dealer accounts and review incoming requests as sales staff. Issue a quote, record the shipment and mark delivery after the dealer accepts.
-- Model resale price, markup, gross margin and GST. Export requests, quotes and pricing scenarios as CSV.
+- Model resale price, markup, gross margin and GST. Record private resale proceeds and actual profit on delivered orders. Export requests, quotes and pricing scenarios as CSV.
 - Preview the experience in demo mode. Demo records live in the current browser tab session.
 
 ## Run locally

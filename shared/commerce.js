@@ -38,3 +38,7 @@ export function pricing({ quantity, unitCost, freight, handling, markup, mode, g
   return { base, cost, revenue, profit, tax, total: round(revenue + tax), margin: revenue ? profit / revenue * 100 : 0,
     perUnit: quantity ? round(revenue / quantity) : 0 };
 }
+
+export function resaleProfit(quote, resale) {
+  return round(resale.revenue - quote.subtotal - quote.freight - resale.expenses);
+}

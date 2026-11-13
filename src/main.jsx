@@ -130,6 +130,15 @@ function App() {
     }
     setToast('Request updated');
   }
+  async function saveResale(body) {
+    if(account) {
+      const {resale}=await api('resale',body);
+      setLive(list=>list.map(row=>row.id===body.id?{...row,resale}:row));
+    } else {
+      writeDemo(rows.map(row=>row.id===body.id?{...row,resale:{revenue:Number(body.revenue),expenses:Number(body.expenses)}}:row));
+    }
+    setToast('Resale figures saved');
+  }
   function priceFromQuote(quote,items) {
     const quantity=items.reduce((sum,i)=>sum+i.quantity,0);
     setPricingPrefill(items.length===1?{quantity:String(quantity),unitCost:(quote.subtotal/quantity).toFixed(2),freight:String(quote.freight),handling:'0'}:{quantity:'1',unitCost:String(quote.subtotal),freight:String(quote.freight),handling:'0'});
@@ -167,7 +176,7 @@ function App() {
     {modal?.type==='account' && account && <Modal key="account" title="Your account" onClose={close}><div className="account-detail"><span className="avatar">{initials(account.name)}</span><div><h3>{account.name}</h3><p>{account.company} · {staff?'Sales staff':'Dealer'}</p><p>{account.email}</p></div></div><Button icon={LogOut} variant="secondary" onClick={logout}>Sign out</Button></Modal>}
     {modal?.type==='product' && <Modal key="product" title="Product details" onClose={close} wide><ProductDetails product={modal.product} onNew={staff?null:newRequest}/></Modal>}
     {modal?.type==='request' && <Modal key="request" title="New article request" subtitle={account?'Send an article request to your sales team.':'Demo mode. This request stays in your current browser session.'} onClose={close} wide><RequestForm initial={modal.prefill} demo={!account} onSubmit={submitRequest}/></Modal>}
-    {selectedRow && <Modal key="detail" title={selectedRow.id} subtitle="Article request and order details" onClose={close} wide><RequestDetails key={selectedRow.id} row={selectedRow} staff={staff} onChange={changeStatus} onPrice={staff?null:priceFromQuote} demo={!account}/></Modal>}
+    {selectedRow && <Modal key="detail" title={selectedRow.id} subtitle="Article request and order details" onClose={close} wide><RequestDetails key={selectedRow.id} row={selectedRow} staff={staff} onChange={changeStatus} onPrice={staff?null:priceFromQuote} onResale={staff?null:saveResale} demo={!account}/></Modal>}
     {modal?.type==='invite' && <Modal key="invite" title="Invite a dealer" subtitle="Create an invitation restricted to the dealer’s work email." onClose={close}><InviteForm/></Modal>}
     {modal?.type==='search' && <Modal key="search" title="Search workspace" onClose={close}><QuickSearch rows={activeRows} go={go} close={close} openProduct={openProduct} openRequest={openRequest}/></Modal>}
     {modal?.type==='updates' && <Modal key="updates" title="Request updates" onClose={close}><div className="search-results">{updates.length?updates.map(r=><button key={r.id} onClick={()=>openRequest(r.id)}><ClipboardList size={18}/><span>{r.id}<small>{r.payload.items[0].name}</small></span><Status status={r.status}/></button>):<p>New quotes and shipment updates will appear here.</p>}</div></Modal>}

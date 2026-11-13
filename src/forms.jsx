@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowDownToLine, ArrowLeft, ArrowRight, ArrowUpRight, Calculator, Check, Copy, Eye, EyeOff, KeyRound, LockKeyhole, Mail, Plus, Send, Truck } from 'lucide-react';
-import { estimate, money, transitions } from '../shared/commerce.js';
+import { estimate, money, resaleProfit, transitions } from '../shared/commerce.js';
 import { company, dateLabel, products } from './data.js';
 import { api, Button, downloadCsv, ErrorText, Field, IconButton, Status } from './ui.jsx';
 import { EstimateResult, ItemInputs, newLine, services } from './tools.jsx';
@@ -85,7 +85,7 @@ function ArticleList({ items }) {
   return <ul className="article-list">{items.map((item,i)=><li key={i}><div><strong>{products.find(p=>p.id===item.product)?.label || item.name}</strong><small>{item.article} · {item.shade}{item.customShade?' · Custom shade':''}</small></div><span>{item.quantity} {item.unit.toLowerCase()}</span></li>)}</ul>;
 }
 
-export function RequestDetails({ row, staff, onChange, onPrice, demo }) {
+export function RequestDetails({ row, staff, onChange, onPrice, onResale, demo }) {
   const [pending,setPending]=useState('');
   const [busy,setBusy]=useState(false);
   const [error,setError]=useState('');
@@ -120,6 +120,7 @@ export function RequestDetails({ row, staff, onChange, onPrice, demo }) {
       <p>{quote.days} business days lead time{quote.note?' · '+quote.note:''}</p>
       {onPrice && <Button icon={Calculator} variant="secondary" onClick={()=>onPrice(quote,payload.items)}>Model resale margin</Button>}
     </div>}
+    {onResale && quote && row.status === 'Delivered' && <ResaleForm row={row} onSave={onResale}/>}
     {!!next.length && <div className="button-group detail-action">{next.map(s=><Button key={s} variant={s==='Declined'?'secondary':'primary'} onClick={()=>{setPending(s);setError('');}}>{({Quoted:'Send quote',Confirmed:'Accept quote',Declined:'Decline','In review':'Start review',Dispatched:'Record dispatch',Delivered:'Mark delivered'})[s]}</Button>)}</div>}
     {pending && <form className="quote-panel" onSubmit={submit}>
       <h3>{pending==='Quoted'?'Prepare sales quote':pending==='Dispatched'?'Dispatch details':'Confirm status change'}</h3>
@@ -150,4 +151,24 @@ export function InviteForm() {
   }
   return link ? <div className="auth-form"><p>Share this single-use link with the dealer. It expires in seven days.</p><Field label="Invitation link"><input value={link} readOnly onFocus={e=>e.target.select()}/></Field><Button icon={copied?Check:Copy} onClick={async()=>{try{await navigator.clipboard.writeText(link);setCopied(true);}catch{setError('Select and copy the link above.');}}}>{copied?'Copied':'Copy link'}</Button><ErrorText>{error}</ErrorText></div> :
     <form className="auth-form" onSubmit={submit}><Field label="Dealer work email"><input type="email" name="email" placeholder="dealer@company.com" required/></Field><ErrorText>{error}</ErrorText><Button type="submit" icon={Mail} disabled={busy}>{busy?'Creating…':'Generate invitation'}</Button></form>;
+}
+
+function ResaleForm({ row, onSave }) {
+  const [busy,setBusy]=useState(false);
+  const [error,setError]=useState('');
+  async function submit(e) {
+    e.preventDefault();setBusy(true);setError('');
+    try {await onSave({id:row.id,...Object.fromEntries(new FormData(e.currentTarget))});}
+    catch(error){setError(error.message);}
+    finally{setBusy(false);}
+  }
+  return <form className="quote-panel" onSubmit={submit}>
+    <h3>Actual resale & profit</h3>
+    <p>Enter pre-tax sales and additional costs for this order. These figures are visible to your dealer account.</p>
+    <div className="form-grid"><Field label="Resale proceeds before GST (₹)"><input name="revenue" type="number" min="0" max="1000000000" step=".01" defaultValue={row.resale?.revenue} required/></Field>
+    <Field label="Other selling expenses (₹)"><input name="expenses" type="number" min="0" max="1000000000" step=".01" defaultValue={row.resale?.expenses ?? 0} required/></Field></div>
+    {row.resale && <div className="total-row"><span>Recorded profit before tax</span><b>{money(resaleProfit(row.quote,row.resale),2)}</b></div>}
+    <ErrorText>{error}</ErrorText>
+    <Button type="submit" icon={Check} disabled={busy}>{busy?'Saving…':'Save resale figures'}</Button>
+  </form>;
 }
