@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowRight, ArrowUpRight, Bell, BookOpen, Calculator, CheckCircle2, ChevronDown, ChevronRight, CircleHelp, ClipboardList, LayoutDashboard, LogOut, Menu, PackageSearch, Search, Truck, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Bell, BookOpen, Calculator, CheckCircle2, ChevronDown, ClipboardList, LayoutDashboard, LogOut, Menu, PackageSearch, Search, Truck, X } from 'lucide-react';
 import { estimate, quantityValid, transitions } from '../shared/commerce.js';
 import { company, demoRequests, products } from './data.js';
 import { AuthForm, InviteForm, ProductDetails, RequestDetails, RequestForm } from './forms.jsx';
@@ -27,28 +27,6 @@ function demoHistory() {
 function displayTitle(key,staff){return staff && key==='requests'?'Dealer requests':navigation.find(([name])=>name===key)?.[1];}
 function initials(name) {return name?.trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase() || 'DE';}
 
-function Sidebar({ page, go, open, close, account }) {
-  return <>
-    {open && <button className="mobile-scrim" aria-label="Close navigation" onClick={close}/>}
-    <aside className={'sidebar '+(open?'sidebar-open':'')}>
-      <a href="#overview" className="brand" onClick={e=>{e.preventDefault();go('overview');}} aria-label="Vardhman A&E Threads home">
-        <img src="/assets/vardhman.png" alt="Vardhman A&E Threads"/>
-        <span>DEALER PORTAL</span>
-      </a>
-      <nav aria-label="Main navigation">
-        <div className="nav-group"><div className="nav-label">WORKSPACE</div>{navigation.slice(0,3).map(([key,,Icon])=>
-          <a href={'#'+key} key={key} className={page===key?'active':''} aria-current={page===key?'page':undefined} onClick={e=>{e.preventDefault();go(key);}}><Icon size={19}/>{displayTitle(key,account?.role==='staff')}{page===key&&<i/>}</a>)}</div>
-        <div className="nav-group"><div className="nav-label">SELLING TOOLS</div>{navigation.slice(3,5).map(([key,label,Icon])=>
-          <a href={'#'+key} key={key} className={page===key?'active':''} aria-current={page===key?'page':undefined} onClick={e=>{e.preventDefault();go(key);}}><Icon size={19}/>{label}{page===key&&<i/>}</a>)}</div>
-        <div className="nav-group"><div className="nav-label">SUPPORT</div>{navigation.slice(5).map(([key,label,Icon])=>
-          <a href={'#'+key} key={key} className={page===key?'active':''} aria-current={page===key?'page':undefined} onClick={e=>{e.preventDefault();go(key);}}><Icon size={19}/>{label}{page===key&&<i/>}</a>)}</div>
-      </nav>
-      <div className="sidebar-bottom"><div className="help-card"><span className="help-icon"><CircleHelp size={18}/></span><div><strong>Need assistance?</strong><a href={company+'/contact-us'} target="_blank" rel="noreferrer">Contact sales support <ArrowUpRight size={13}/></a></div></div>
-      <a className="company-link" href={company} target="_blank" rel="noreferrer">Vardhman corporate website <ArrowUpRight size={14}/></a></div>
-    </aside>
-  </>;
-}
-
 function QuickSearch({ rows, openProduct, openRequest, go, close }) {
   const [query,setQuery]=useState('');
   const needle=query.trim().toLowerCase();
@@ -64,6 +42,7 @@ function QuickSearch({ rows, openProduct, openRequest, go, close }) {
 
 function App() {
   const [page,setPage]=useState(currentPage);
+  const [catalogCategory,setCatalogCategory]=useState('All products');
   const [account,setAccount]=useState(null);
   const [rows,setRows]=useState(demoHistory);
   const [live,setLive]=useState([]);
@@ -77,10 +56,24 @@ function App() {
   const activeRows=account?live:rows;
   const staff=account?.role==='staff';
 
-  const go=useCallback((key)=>{
+  const go=useCallback((key,category='All products')=>{
+    if(key==='catalog')setCatalogCategory(category);
     if(location.hash!=='#'+key) history.pushState(null,'','#'+key);
     setPage(key);setDrawer(false);window.scrollTo({top:0,behavior:'instant'});
   },[]);
+  useEffect(()=>{
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const sections=[...document.querySelectorAll('.main > section, .main > .dashboard-grid')];
+    const observer=new IntersectionObserver(entries=>{
+      for(const entry of entries){
+        if(entry.isIntersecting){entry.target.classList.add('is-revealed');observer.unobserve(entry.target);}
+      }
+    },{threshold:0.05});
+    for(const section of sections){
+      if(section.getBoundingClientRect().top>innerHeight){section.classList.add('scroll-reveal');observer.observe(section);}
+    }
+    return()=>observer.disconnect();
+  },[page]);
   const refresh=useCallback(async()=>{
     setLoading(true);setLoadError('');
     try {const data=await api('requests');setLive(data.requests);}
@@ -150,26 +143,29 @@ function App() {
   }
   const selectedRow=modal?.type==='detail'?activeRows.find(r=>r.id===modal.id):null;
   const updates=activeRows.filter(r=>['Quoted','Dispatched','Delivered'].includes(r.status)).slice(0,5);
-  return <div className="shell">
+  return <div className={"shell page-"+page}>
     <a className="skip" href="#main-content" onClick={e=>{e.preventDefault();document.getElementById('main-content').focus();}}>Skip to content</a>
-    <Sidebar page={page} go={go} open={drawer} close={()=>setDrawer(false)} account={account}/>
     <div className="workspace">
-      <header className="topbar"><div className="crumb"><IconButton icon={Menu} label="Open navigation" className="mobile-menu" onClick={()=>setDrawer(true)}/><span>Workspace</span><ChevronRight size={14}/><strong>{displayTitle(page,staff)}</strong></div>
+      <header className="topbar">
+        <a href="#overview" className="brand" onClick={e=>{e.preventDefault();go('overview');}} aria-label="Vardhman A&E Threads home"><img src="/assets/vardhman.png" alt="Vardhman A&E Threads"/></a>
+        <nav className={'main-nav '+(drawer?'is-open':'')} aria-label="Main navigation">
+          {navigation.map(([key,label])=><a key={key} href={'#'+key} aria-current={page===key?'page':undefined} className={page===key?'active':''} onClick={e=>{e.preventDefault();go(key);}}>{({overview:'Discover',catalog:'Products',requests:'Orders',delivery:'Delivery',pricing:'Pricing',resources:'Resources'})[key]}</a>)}
+        </nav>
         <div className="top-actions">
-          <button className="global-search" onClick={()=>setModal({type:'search'})} aria-label="Search workspace"><Search size={17}/><span>Search workspace</span><kbd>Ctrl K</kbd></button>
+          <IconButton icon={Search} label="Search workspace" onClick={()=>setModal({type:'search'})}/>
           <IconButton icon={Bell} label="Request updates" className="bell" onClick={()=>setModal({type:'updates'})}/>
-          <span className="top-divider"/>
-          <button className="account-button" aria-label={account ? 'Your account' : 'Sign in'} onClick={()=>setModal({type:account?'account':'auth'})}><span className="avatar">{initials(account?.name)}</span><span className="account-label"><strong>{account?.name || 'Dealer access'}</strong><small>{account?staff?'Sales staff':account.company:'Sign in'}</small></span><ChevronDown size={14}/></button>
+          <button className="account-button" aria-label={account?'Your account':'Sign in'} onClick={()=>setModal({type:account?'account':'auth'})}>{account?initials(account.name):'Partner login'}<ArrowUpRight size={16}/></button>
+          <IconButton icon={drawer?X:Menu} label={drawer?'Close navigation':'Open navigation'} className="mobile-menu" onClick={()=>setDrawer(!drawer)}/>
         </div>
       </header>
-      <main id="main-content" className="main" tabIndex={-1}>
+      <main id="main-content" className="main" key={page} tabIndex={-1}>
         {page==='overview' && <Dashboard rows={activeRows} account={account} demo={!account} go={go} onNew={()=>newRequest()} onOpen={openRequest} onProduct={openProduct}/>}
-        {page==='catalog' && <Catalog onProduct={openProduct}/>}
+        {page==='catalog' && <Catalog onProduct={openProduct} initialCategory={catalogCategory}/>}
         {page==='requests' && <Requests rows={activeRows} staff={staff} onOpen={openRequest} onNew={()=>newRequest()} loading={loading} error={loadError} refresh={refresh}/>}
         {page==='delivery' && <Delivery onNew={staff?null:newRequest}/>}
         {page==='pricing' && <Pricing key={priceKey} prefill={pricingPrefill} onReset={()=>setPricingPrefill(null)}/>}
         {page==='resources' && <Resources/>}
-        <footer className="footer"><span>Vardhman A&E Threads · Dealer portal pilot</span>{!account&&<span className="demo-note"><i/> Demo workspace · Sample commercial data</span>}</footer>
+        <footer className="footer"><div className="footer-top"><div><span className="eyebrow">VARDHMAN A&E THREADS</span><h2>Stronger connections.<br/>Endless possibilities.</h2></div><a href={company+'/contact-us'} target="_blank" rel="noreferrer">Talk to our team <ArrowUpRight size={22}/></a></div><div className="footer-bottom"><span>Vardhman A&E · Partner commerce</span>{!account&&<span>Demo workspace · Sample commercial data</span>}<a href={company} target="_blank" rel="noreferrer">Corporate website ↗</a></div></footer>
       </main>
     </div>
     {modal?.type==='auth' && <Modal key="auth" title="Dealer portal access" subtitle="Sign in with your invited dealer or sales staff account." onClose={close}><AuthForm invitation={modal.invitation} onDemo={close} onAccount={a=>{setAccount(a);close();go(a.role==='staff'?'requests':'overview');setToast('Signed in');}}/></Modal>}

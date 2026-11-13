@@ -34,14 +34,14 @@ function Chart({ series, mode, demo }) {
   const points = nodes.map(p => p.x + ',' + p.y).join(' ');
   const first = nodes[0], last = nodes.at(-1);
   return <div className="chart"><svg viewBox={'0 0 ' + width + ' ' + height} role="img" aria-label={(demo ? 'Sample ' : '') + (mode === 'sales' ? 'monthly order value' : 'monthly request volume') + '. ' + series.map(m => m.label + ' ' + (mode === 'sales' ? money(m.value) : m.value)).join(', ')}>
-    <defs><linearGradient id="chart-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#2d67ed" stopOpacity=".24"/><stop offset="100%" stopColor="#2d67ed" stopOpacity=".015"/></linearGradient></defs>
+    <defs><linearGradient id="chart-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#185342" stopOpacity=".24"/><stop offset="100%" stopColor="#185342" stopOpacity=".015"/></linearGradient></defs>
     {Array.from({length:5}, (_, i) => {
       const y = top + (bottom - top) / 4 * i, n = step * (4 - i);
-      return <g key={i}><line x1={left} x2={width - 9} y1={y} y2={y} stroke="#e7edf6" strokeDasharray={i === 4 ? '' : '4 4'}/><text x={left - 8} y={y + 4} textAnchor="end">{mode === 'sales' && n ? '₹' + n / 1000 + 'k' : n}</text></g>;
+      return <g key={i}><line x1={left} x2={width - 9} y1={y} y2={y} stroke="#e4e7e0" strokeDasharray={i === 4 ? '' : '4 4'}/><text x={left - 8} y={y + 4} textAnchor="end">{mode === 'sales' && n ? '₹' + n / 1000 + 'k' : n}</text></g>;
     })}
     <polygon points={first.x + ',' + bottom + ' ' + points + ' ' + last.x + ',' + bottom} fill="url(#chart-fill)"/>
-    <polyline points={points} fill="none" stroke="#2e64ee" strokeWidth="2.6" strokeLinejoin="round"/>
-    {nodes.map((m,i) => <g key={i}><circle cx={m.x} cy={m.y} r="3.5" fill="white" stroke="#2e64ee" strokeWidth="2"><title>{m.label}: {mode === 'sales' ? money(m.value) : m.value}</title></circle>{(series.length <= 6 || i % 2 === 1) && <text x={m.x} y={168} textAnchor="middle">{m.label}</text>}</g>)}
+    <polyline points={points} fill="none" stroke="#185342" strokeWidth="2.6" strokeLinejoin="round"/>
+    {nodes.map((m,i) => <g key={i}><circle cx={m.x} cy={m.y} r="3.5" fill="white" stroke="#185342" strokeWidth="2"><title>{m.label}: {mode === 'sales' ? money(m.value) : m.value}</title></circle>{(series.length <= 6 || i % 2 === 1) && <text x={m.x} y={168} textAnchor="middle">{m.label}</text>}</g>)}
   </svg></div>;
 }
 
@@ -65,18 +65,25 @@ export function Dashboard({ rows, account, demo, go, onNew, onOpen, onProduct })
     ['Calculate margins','Model markup, sale price and gross profit.',Calculator,'mint', () => go('pricing')]
   ];
   return <>
-    <div className="welcome">
-      <div><div className="eyebrow"><span className="eyedot"/> {account?.role==='staff' ? 'SALES WORKSPACE' : 'DEALER WORKSPACE'}{demo && <span className="demo-badge">Demo data</span>}</div><h1>{firstName ? 'Welcome back, ' + firstName : 'Dealer overview'}</h1><p>Manage product requests, plan deliveries and price your next sale.</p></div>
-      <Button icon={Plus} onClick={onNew}>{account?.role === 'staff' ? 'Invite dealer' : 'New request'}</Button>
-    </div>
-    <section className="hero">
-      <div className="hero-content">
-        <div className="hero-label"><span/> VARDHMAN A&E THREADS</div>
-        <h2>From thread to trade.</h2>
-        <p>Find the right sewing thread, request a quote, and track your order from submission to delivery.</p>
-        <button className="hero-button" onClick={() => go('catalog')}>Explore catalog <ArrowRight size={17}/></button>
+    <section className="editorial-hero">
+      <div className="hero-copy">
+        <div className="eyebrow">VARDHMAN A&E · PARTNER COMMERCE</div>
+        <h1>A finer thread.<br/>A stronger<br/><em>partnership.</em></h1>
+        <p>Exceptional threads. Connected commerce.<br/>Everything you need to source with confidence<br className="desktop-break"/> and grow your business.</p>
+        <div className="hero-actions"><Button onClick={()=>go('catalog')}>Explore the collection <ArrowUpRight size={18}/></Button><button className="text-action" onClick={onNew}>{account?.role==='staff'?'Invite a dealer':'Request a quote'} <ArrowRight size={17}/></button></div>
+        <div className="hero-footnote"><span className="small-rule"/> Apparel · Technical · Consumer</div>
+      </div>
+      <div className="hero-visual"><img src="/assets/thread-editorial.webp" alt="Forest green, ivory and copper sewing thread cones in natural studio light" fetchPriority="high"/>
+        <div className="image-caption"><span>Precision in every fibre.</span><span>Vardhman A&E Threads</span></div>
+        <button className="material-link" onClick={()=>onProduct(featured[0])}><span>Explore sustainable threads</span><ArrowUpRight size={21}/></button>
       </div>
     </section>
+    <section className="collection-intro">
+      <span className="eyebrow">ENGINEERED FOR YOUR INDUSTRY</span><div><h2>Small details.<br/><em>Extraordinary possibilities.</em></h2><p>From everyday apparel to demanding technical applications. Discover threads made for the way you work.</p></div>
+      <div className="industry-links">{['Apparel','Non-apparel','Consumer','Embroidery'].map(category=><button key={category} onClick={()=>go('catalog',category)}>{category}<ArrowUpRight size={19}/></button>)}</div>
+    </section>
+    <section className="featured-panel"><div className="section-head"><div><span className="eyebrow">THE COLLECTION</span><h2>Made to perform.</h2></div><Button variant="secondary" onClick={()=>go('catalog')}>All products <ArrowUpRight size={17}/></Button></div><div className="product-grid">{featured.map(product=><ProductCard key={product.id} product={product} onOpen={onProduct}/>)}</div></section>
+    <section className="business-heading"><div><span className="eyebrow">YOUR BUSINESS, CONNECTED</span><h2>{firstName?'Welcome back, '+firstName+'.':'Every order. In perspective.'}</h2></div><div className="business-actions">{demo&&<span className="demo-badge">Sample workspace</span>}<Button onClick={onNew}>{account?.role==='staff'?'Invite dealer':'New request'}<Plus size={17}/></Button></div></section>
     <section className="stats" aria-label="Workspace metrics">{counts.map(([label,value,Icon,tone,sub]) => <article className="metric" key={label}><div className={'metric-icon ' + tone}><Icon size={19}/></div><div className="metric-label">{label}</div><strong>{value}</strong><div className="metric-note">{sub}</div></article>)}</section>
     <div className="dashboard-grid">
       <section className="panel sales-panel">
@@ -92,15 +99,12 @@ export function Dashboard({ rows, account, demo, go, onNew, onOpen, onProduct })
     <section className="panel recent-panel"><div className="panel-head"><div><h2>Recent requests</h2><p>Latest quotes, orders and dispatch updates</p></div><Button variant="secondary" onClick={()=>go('requests')}>View all <ArrowRight size={15}/></Button></div>
       <RequestTable rows={rows.slice(0,4)} staff={account?.role==='staff'} onOpen={onOpen} onNew={account?.role !== 'staff' && onNew} compact/>
     </section>
-    <section className="featured-panel"><div className="section-head"><div><h2>Featured products</h2><p>Thread ranges from Vardhman A&E</p></div><Button variant="secondary" onClick={()=>go('catalog')}>View catalog <ArrowRight size={15}/></Button></div>
-      <div className="product-grid">{featured.map(product=><ProductCard key={product.id} product={product} onOpen={onProduct}/>)}</div>
-    </section>
   </>;
 }
 
-export function Catalog({ onProduct }) {
+export function Catalog({ onProduct, initialCategory = 'All products' }) {
   const [query,setQuery]=useState('');
-  const [category,setCategory]=useState('All products');
+  const [category,setCategory]=useState(initialCategory);
   const [sort,setSort]=useState('Featured');
   const [limit,setLimit]=useState(16);
   const displayed = useMemo(()=>{
@@ -112,7 +116,7 @@ export function Catalog({ onProduct }) {
     return list;
   },[query,category,sort]);
   return <>
-    <PageHeader label="PRODUCTS" title="Product catalog" description="Explore Vardhman A&E sewing threads by range and application." />
+    <PageHeader label="PRODUCTS" title="Find your finer thread." description="The Vardhman A&E collection. Engineered for strength, colour and exceptional performance." />
     <div className="panel filters"><label className="search-field"><Search size={19}/><input value={query} onChange={e=>{setQuery(e.target.value);setLimit(16);}} placeholder="Search by product, fibre or application" aria-label="Search products"/></label>
       <div className="filter-pair"><SlidersHorizontal size={18}/><select aria-label="Application filter" value={category} onChange={e=>{setCategory(e.target.value);setLimit(16);}}>{categories.map(c=><option key={c}>{c}</option>)}</select><select aria-label="Sort products" value={sort} onChange={e=>setSort(e.target.value)}><option>Featured</option><option>A to Z</option></select></div></div>
     <div className="chip-row">{categories.slice(0,8).map(c=><button key={c} className={category===c?'active':''} onClick={()=>{setCategory(c);setLimit(16);}}>{c}</button>)}<button className={category==='Sustainable'?'active':''} onClick={()=>{setCategory('Sustainable');setLimit(16);}}>Sustainable</button></div>
